@@ -1,27 +1,28 @@
-let count = 0;
+	namespace Fibonacci
+	{
+    class Program
+    {
+        static Dictionary<int, long> _memo =
+            new() { { 0, 0 }, { 1, 1 } };
 
-function fib(n) {
-  count++;
-  if(n <= 1) return n;
-  return fib(n-1) + fib(n-2);
-}
+        static void Main(string[] args)
+        {
+            for (int i = 0; i < 51; i++)
+            {
+                Console.WriteLine($"Fib({i}) = {Fib(i)}");
+            }
+        }
 
-function memoization(fn) {
-  let cache = {};
-  return (...args) => {
-    let key = args.join(',');
-    if(key in cache) {
-      return cache[key];
-    } 
-    
-    cache[key] = fn.apply(null, args);
-    return cache[key];
-  }
-}
+        static long Fib(int n)
+        {
+            if (_memo.ContainsKey(n))
+                return _memo[n];
 
-let count = 0;
-const fib = memoization((n) => {
-  count++;
-  if(n <= 1) return n;
-  return fib(n-1) + fib(n-2);
-})
+            var value = Fib(n - 1) + Fib(n - 2);
+
+            _memo[n] = value;
+
+            return value;
+        }
+    }
+	}
