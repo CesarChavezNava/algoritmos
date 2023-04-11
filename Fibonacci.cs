@@ -1,5 +1,5 @@
-	namespace Fibonacci
-	{
+namespace Fibonacci
+{
     class Program
     {
         static Dictionary<int, long> _memo =
@@ -25,4 +25,4 @@
             return value;
         }
     }
-	}
+}
