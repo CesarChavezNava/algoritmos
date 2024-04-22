@@ -1,0 +1,42 @@
+// Typescript
+function isValid(s: string): boolean {
+ 
+    const stack = []
+    for(const bracket of s) {
+        switch(bracket) {
+            case "}":
+                if(stack[stack.length - 1] !== '{') {
+                    return false;
+                }
+                stack.pop();
+                break;
+            case "{":
+                stack.push("{");
+                break;
+            case "]":
+                if(stack[stack.length - 1] !== '[') {
+                    return false;
+                }
+                stack.pop();
+                break;
+            case "[":
+                 stack.push("[");
+                break;
+            case ")":
+                if(stack[stack.length - 1] !== '(') {
+                    return false;
+                }
+                stack.pop();
+                break;
+            case "(":
+                stack.push("(");
+                break;
+        }
+    }
+
+    if(stack.length > 0) {
+        return false;
+    }
+
+    return true;
+};
